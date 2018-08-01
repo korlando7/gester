@@ -103,6 +103,12 @@ export const setError = (e) => {
     error: e
   }
 }
+export const setMatches = (matches) => {
+  return {
+    type: Types.SET_MATCHES,
+    matches
+  }
+}
 // #endregion
 
 // #region Interacting with the core

@@ -123,6 +123,17 @@ button {
     }
 }
 
+.dropdown {
+    background-color: white;
+    width: 85%;
+    margin: 0 auto;
+    z-index: 9999;
+
+    ul {
+        list-style-type: none;
+    }
+}
+
 /* ------ Modal ------ */
 .modal {
     z-index: 1001;

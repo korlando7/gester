@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import JoinPubModal from './JoinPubModal'
+import DropDown from './Dropdown'
 import * as Actions from '../store/actions'
 
 class ControlPanel extends Component {
@@ -14,9 +15,12 @@ class ControlPanel extends Component {
     this.handlePubCancel = this.handlePubCancel.bind(this)
     this.handlePubSubmit = this.handlePubSubmit.bind(this)
     this.handleRecentClick = this.handleRecentClick.bind(this)
+    this.handleAuthorSearch = this.handleAuthorSearch.bind(this)
+    this.handleLeaveInput = this.handleLeaveInput.bind(this)
 
     this.state = {
-      joiningPub: false
+      joiningPub: false,
+      dropdown: false
     }
   }
 
@@ -28,7 +32,25 @@ class ControlPanel extends Component {
         .map(x => x.trim())
       this.recipientsInput.value = ''
       this.props.goPrivate(recipients)
+      this.setState({ dropdown: false })
     }
+  }
+
+  handleAuthorSearch (e) {
+    if (e.target.value.length > 0) {
+      this.setState({ dropdown: true })
+      // need to move this to a better spot so its not declared so much
+      const authors = Object.keys(this.props.authors).map(key => this.props.authors[key].name.slice(1))
+      const matches = authors.filter(name => name.startsWith(e.target.value))
+      this.props.setMatches(matches)
+    } else {
+      this.setState({ dropdown: false })
+    }
+  }
+
+  handleLeaveInput () {
+    this.setState({ dropdown: false })
+    console.log(this.state)
   }
 
   handleModeButton () {
@@ -66,18 +88,16 @@ class ControlPanel extends Component {
           }
         </div>
         <div>
-          {privateMode &&
-            <button className='button public-button' onClick={this.handleModeButton}>public</button>
-          }
-        </div>
-        <div>
           <input
             className='control-panel__input'
             type='text'
-            placeholder='New private message...'
+            placeholder='new private message...'
             onKeyPress={this.handleKeyPress}
+            onChange={this.handleAuthorSearch}
+            onBlur={this.handleLeaveInput}
             ref={el => { this.recipientsInput = el }}
           />
+          {this.state.dropdown && <DropDown />}
         </div>
         <div className='control-panel__users'>
           <div className='recents'>
@@ -97,6 +117,11 @@ class ControlPanel extends Component {
             })}
           </div>
         </div>
+        <div>
+          {privateMode &&
+            <button className='button public-button' onClick={this.handleModeButton}>back to public</button>
+          }
+        </div>
       </div>
     )
   }
@@ -105,21 +130,25 @@ class ControlPanel extends Component {
 const mapStateToProps = state => ({
   mode: state.mode,
   recents: state.recents,
-  recipients: state.recipients
+  recipients: state.recipients,
+  authors: state.authors
 })
 
 const mapDispatchToProps = dispatch => ({
   goPrivate: bindActionCreators(Actions.goPrivate, dispatch),
   goPublic: bindActionCreators(Actions.goPublic, dispatch),
-  joinPub: bindActionCreators(Actions.joinPub, dispatch)
+  joinPub: bindActionCreators(Actions.joinPub, dispatch),
+  setMatches: bindActionCreators(Actions.setMatches, dispatch)
 })
 
 ControlPanel.propTypes = {
   goPublic: PropTypes.func.isRequired,
   goPrivate: PropTypes.func.isRequired,
   joinPub: PropTypes.func.isRequired,
+  setMatches: PropTypes.func.isRequired,
   recents: PropTypes.array,
   recipients: PropTypes.array,
+  authors: PropTypes.objectOf(PropTypes.object).isRequired,
   mode: PropTypes.string
 }
 

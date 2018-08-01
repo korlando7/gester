@@ -17,6 +17,9 @@ export default (state = initialState, action) => (
       case Types.SET_AUTHORS:
         draft.authors = action.authors
         break
+      case Types.SET_MATCHES:
+        draft.matches = action.matches
+        break
       case Types.SET_UNREADS:
         draft.unreads = action.unreads
         break

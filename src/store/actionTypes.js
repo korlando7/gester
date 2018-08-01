@@ -1,6 +1,7 @@
 export const SET_MESSAGES = 'SET_MESSAGES'
 export const SET_AUTHORS = 'SET_AUTHORS'
 export const SET_RECIPIENTS = 'SET_RECIPIENTS'
+export const SET_MATCHES = 'SET_MATCHES'
 export const SET_MODE = 'SET_MODE'
 export const SET_RECENTS = 'SET_RECENTS'
 export const SET_UNREADS = 'SET_UNREADS'

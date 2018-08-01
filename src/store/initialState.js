@@ -8,6 +8,7 @@ export default {
   messages: [],
   authors: {},
   recipients: [],
+  matches: [],
   unreads: [],
   myNames: [],
   recents: [],

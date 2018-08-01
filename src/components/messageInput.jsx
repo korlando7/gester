@@ -26,7 +26,7 @@ class MessageInput extends Component {
         <input
           className='messenger-input'
           type='text'
-          placeholder={`Send ${mode} message`}
+          placeholder={`send ${mode} message`}
           onKeyPress={this.handleKeyPress}
           onChange={this.handleChange}
           ref={el => { this.messageInput = el }}
