@@ -1,0 +1,89 @@
+.control-panel {
+    background-color: $theme-primary;
+    display: grid;
+    grid-template-rows: 60px 80px auto 50px;
+    text-align: center;
+    position: fixed;
+    height: 100vh;
+    width: $control-panel-width;
+
+    .button {
+        padding: 10px 25px;
+        margin-top: 20px;
+    }
+
+    .public-button {
+        width: 75%;
+        margin: 0;
+        background-color: $theme-buttons-secondary;
+
+        &:hover {
+            background-color: $theme-buttons-secondary-hover;
+        }
+
+        &:focus {
+            background-color: $theme-buttons-secondary-click;
+        }
+    }
+
+    &__input {
+        margin-top: 35px;
+        padding: 7px 10px;
+        width: 75%;
+
+        &:focus {
+            border: 2px solid $theme-buttons-click;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+        }
+    }
+
+    &__users {
+        max-width: $control-panel-width;
+        .recents {
+            text-align: left;
+            margin-top: 20px;
+            overflow: scroll;
+
+            div {
+                display: grid;
+                grid-template-columns: 190px 35px;
+                p {
+                    padding: 7px 20px;
+                    margin-right: 5px;
+                    overflow: hidden;
+                }
+                span {
+                    width: 15px;
+                }
+                svg {
+                    margin: 7px 0;
+                    fill-opacity: .8;
+                }
+                .hover {
+                    * {
+                        fill: $theme-error;
+                    }
+                }
+            }
+
+            &-item {
+                &:hover {
+                    background-color: $theme-highlight;
+                }
+                &__active {
+                    background-color: $theme-active;
+                }
+            }
+            .unread {
+                color: $theme-font-dark;
+                font-family: $main-font;
+                font-weight: bold;
+            }
+            
+            &__item {
+                cursor: pointer;
+            }
+        }
+    }
+}

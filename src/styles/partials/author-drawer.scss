@@ -1,0 +1,81 @@
+.author-drawer {
+    height: 100vh;
+    border-left: 2px solid $theme-active;
+    display: grid;
+    grid-template-columns: auto auto;
+
+    &__toggle {
+        margin-top: 20px;
+        width: 48px;
+        text-align: center;
+
+    }
+
+    &__content {
+        width: 205px;
+        padding: 20px;
+        display: grid;
+        text-align: center;
+        grid-template-rows: 60px 125px auto 65px 200px;
+        
+        input {
+            width: calc(100% - 21px);
+            padding: 7px 10px;
+            margin-top: 15px;
+
+            &:focus {
+                border: 2px solid $theme-buttons-click;
+                outline: none;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+            }
+        }
+
+        #button-block {
+            margin-right: 25px;
+            background-color: $theme-buttons-error;
+
+            &:hover {
+                background-color: $theme-buttons-error-hover;                
+            }
+
+            &:focus {
+                background-color: $theme-buttons-error-click;
+            }
+        }
+
+        .toggle {
+            text-align: left;
+        }
+
+        .button {
+            padding: 10px 0;
+            width: 90px;
+        }
+
+        #button-private {
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        div {
+            h1 {
+                word-break: break-all;
+            }
+        }
+    }
+
+    .toggle-arrow {
+        background-color: $color-white;
+        border: 1px solid $theme-active;
+        padding: 10px;
+        cursor: pointer;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+.button-close {
+    cursor: pointer;
+}

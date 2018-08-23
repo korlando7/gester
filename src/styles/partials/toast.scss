@@ -1,0 +1,37 @@
+
+/* ------- Toast ---------- */
+.toast {
+    position: absolute;
+    top: 0;
+    left: $control-panel-width;
+    width: calc(100% - 225px);
+    height: 40px;
+    display: grid;
+    grid-template-columns: 95% 5%;
+    transform: translateY(-70px);
+    animation: slideDown 4.5s 0s ease forwards;
+    * {
+        font-weight: bold;
+        line-height: 40px;
+        text-align: center;
+    }
+}
+
+@keyframes slideDown {
+    0%, 100% { -webkit-transform: translateY(-70px); }
+    10%, 80% { -webkit-transform: translateY(0px); }
+}
+
+.error {
+    background-color: $theme-error;
+    * {
+        color: $theme-font-secondary;
+    }
+}
+
+.notification {
+    background-color: $theme-notification;
+    * {
+        color: $theme-font;
+    }
+}
